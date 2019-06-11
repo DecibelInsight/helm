@@ -3,9 +3,9 @@ FROM alpine:edge
 # variable "VERSION" must be passed as docker environment variables during the image build
 # docker build --no-cache --build-arg VERSION=2.12.0 -t alpine/helm:2.12.0 .
 
-ARG VERSION
 
 # ENV BASE_URL="https://storage.googleapis.com/kubernetes-helm"
+ENV VERSION=2.14.1
 ENV BASE_URL="https://get.helm.sh"
 ENV TAR_FILE="helm-v${VERSION}-linux-amd64.tar.gz"
 
@@ -19,5 +19,4 @@ RUN apk add --update --no-cache curl ca-certificates && \
 
 WORKDIR /apps
 
-ENTRYPOINT ["helm"]
-CMD ["--help"]
+CMD ["helm", "--help"]
